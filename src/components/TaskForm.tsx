@@ -18,7 +18,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onCancel, categories }) =
     name: '',
     priority: 1,
     deadline: '',
-    category: 'Work'
+    category: 'Pekerjaan'
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -39,7 +39,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onCancel, categories }) =
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <Card className="w-full max-w-md">
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Add New Task</CardTitle>
+          <CardTitle>Tambah Tugas Baru</CardTitle>
           <Button 
             variant="ghost" 
             size="sm" 
@@ -52,34 +52,34 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onCancel, categories }) =
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="name">Task Name</Label>
+              <Label htmlFor="name">Nama Tugas</Label>
               <Input
                 id="name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="Enter task name..."
+                placeholder="Masukkan nama tugas..."
                 required
               />
             </div>
 
             <div>
-              <Label htmlFor="priority">Priority (1-5)</Label>
+              <Label htmlFor="priority">Prioritas (1-5)</Label>
               <select
                 id="priority"
                 value={formData.priority}
                 onChange={(e) => setFormData({ ...formData, priority: parseInt(e.target.value) })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
               >
-                <option value={1}>1 - Highest Priority</option>
-                <option value={2}>2 - High Priority</option>
-                <option value={3}>3 - Medium Priority</option>
-                <option value={4}>4 - Low Priority</option>
-                <option value={5}>5 - Lowest Priority</option>
+                <option value={1}>1 - Prioritas Tertinggi</option>
+                <option value={2}>2 - Prioritas Tinggi</option>
+                <option value={3}>3 - Prioritas Sedang</option>
+                <option value={4}>4 - Prioritas Rendah</option>
+                <option value={5}>5 - Prioritas Terendah</option>
               </select>
             </div>
 
             <div>
-              <Label htmlFor="deadline">Deadline</Label>
+              <Label htmlFor="deadline">Tenggat Waktu</Label>
               <Input
                 id="deadline"
                 type="date"
@@ -91,7 +91,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onCancel, categories }) =
             </div>
 
             <div>
-              <Label htmlFor="category">Category</Label>
+              <Label htmlFor="category">Kategori</Label>
               <select
                 id="category"
                 value={formData.category}
@@ -106,10 +106,10 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onCancel, categories }) =
 
             <div className="flex gap-2 pt-4">
               <Button type="submit" className="flex-1 bg-blue-600 hover:bg-blue-700">
-                Add Task
+                Tambah Tugas
               </Button>
               <Button type="button" variant="outline" onClick={onCancel} className="flex-1">
-                Cancel
+                Batal
               </Button>
             </div>
           </form>

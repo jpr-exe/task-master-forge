@@ -35,7 +35,7 @@ const TaskList: React.FC<TaskListProps> = ({
         <CardContent>
           <div className="text-gray-500">
             <Flag className="h-12 w-12 mx-auto mb-4 opacity-50" />
-            <p>No tasks found. Add a new task to get started!</p>
+            <p>Tidak ada tugas yang ditemukan. Tambahkan tugas baru untuk memulai!</p>
           </div>
         </CardContent>
       </Card>
@@ -60,19 +60,19 @@ const TaskList: React.FC<TaskListProps> = ({
                     #{task.id}
                   </Badge>
                   <Badge className={`text-white ${getPriorityColor(task.priority)}`}>
-                    Priority {task.priority}
+                    Prioritas {task.priority}
                   </Badge>
                   <Badge variant="secondary">
                     {task.category}
                   </Badge>
                   {isOverdue(task.deadline) && (
                     <Badge variant="destructive">
-                      Overdue
+                      Terlambat
                     </Badge>
                   )}
                   {isToday(task.deadline) && (
                     <Badge className="bg-yellow-500 text-white">
-                      Due Today
+                      Tenggat Hari Ini
                     </Badge>
                   )}
                 </div>
@@ -83,7 +83,7 @@ const TaskList: React.FC<TaskListProps> = ({
                 
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Calendar className="h-4 w-4" />
-                  <span>Due: {formatDate(task.deadline)}</span>
+                  <span>Tenggat: {formatDate(task.deadline)}</span>
                 </div>
               </div>
               
@@ -94,7 +94,7 @@ const TaskList: React.FC<TaskListProps> = ({
                   className="bg-green-600 hover:bg-green-700"
                 >
                   <Check className="h-4 w-4 mr-1" />
-                  Complete
+                  Selesai
                 </Button>
                 <Button
                   onClick={() => onDelete(task.id)}
@@ -103,7 +103,7 @@ const TaskList: React.FC<TaskListProps> = ({
                   className="text-red-600 hover:text-red-700 hover:bg-red-50"
                 >
                   <Trash2 className="h-4 w-4 mr-1" />
-                  Delete
+                  Hapus
                 </Button>
               </div>
             </div>

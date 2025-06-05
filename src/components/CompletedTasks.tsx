@@ -22,7 +22,7 @@ const CompletedTasks: React.FC<CompletedTasksProps> = ({
         <CardContent>
           <div className="text-gray-500">
             <CheckCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
-            <p>No completed tasks yet. Complete some tasks to see them here!</p>
+            <p>Belum ada tugas yang selesai. Selesaikan beberapa tugas untuk melihatnya di sini!</p>
           </div>
         </CardContent>
       </Card>
@@ -34,7 +34,7 @@ const CompletedTasks: React.FC<CompletedTasksProps> = ({
       <CardHeader className="px-0 pb-4">
         <CardTitle className="flex items-center gap-2">
           <CheckCircle className="h-5 w-5 text-green-600" />
-          Completed Tasks ({tasks.length})
+          Tugas Selesai ({tasks.length})
         </CardTitle>
       </CardHeader>
       
@@ -48,14 +48,14 @@ const CompletedTasks: React.FC<CompletedTasksProps> = ({
                     #{task.id}
                   </Badge>
                   <Badge className={`text-white ${getPriorityColor(task.priority)}`}>
-                    Priority {task.priority}
+                    Prioritas {task.priority}
                   </Badge>
                   <Badge variant="secondary">
                     {task.category}
                   </Badge>
                   <Badge className="bg-green-600 text-white">
                     <CheckCircle className="h-3 w-3 mr-1" />
-                    Completed
+                    Selesai
                   </Badge>
                 </div>
                 
@@ -65,7 +65,7 @@ const CompletedTasks: React.FC<CompletedTasksProps> = ({
                 
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Calendar className="h-4 w-4" />
-                  <span>Was due: {formatDate(task.deadline)}</span>
+                  <span>Tenggat dulu: {formatDate(task.deadline)}</span>
                 </div>
               </div>
             </div>

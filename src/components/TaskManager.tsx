@@ -37,36 +37,36 @@ const TaskManager = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
   const [sortBy, setSortBy] = useState<'priority' | 'deadline' | 'name'>('priority');
-  const [filterCategory, setFilterCategory] = useState<string>('all');
+  const [filterCategory, setFilterCategory] = useState<string>('semua');
   const [taskCounter, setTaskCounter] = useState(1);
 
-  const categories = ['Work', 'Personal', 'Study', 'Health', 'Shopping', 'Other'];
+  const categories = ['Pekerjaan', 'Pribadi', 'Belajar', 'Kesehatan', 'Belanja', 'Lainnya'];
 
   useEffect(() => {
     // Load sample tasks
     const sampleTasks: Task[] = [
       {
         id: 1,
-        name: 'Complete React Project',
+        name: 'Selesaikan Proyek React',
         priority: 1,
         deadline: new Date('2024-06-10'),
-        category: 'Work',
+        category: 'Pekerjaan',
         completed: false
       },
       {
         id: 2,
-        name: 'Buy Groceries',
+        name: 'Beli Bahan Makanan',
         priority: 3,
         deadline: new Date('2024-06-08'),
-        category: 'Shopping',
+        category: 'Belanja',
         completed: false
       },
       {
         id: 3,
-        name: 'Study Data Structures',
+        name: 'Belajar Struktur Data',
         priority: 2,
         deadline: new Date('2024-06-15'),
-        category: 'Study',
+        category: 'Belajar',
         completed: false
       }
     ];
@@ -87,7 +87,7 @@ const TaskManager = () => {
     setTaskCounter(prev => prev + 1);
     setShowAddForm(false);
     
-    toast.success(`Task "${taskData.name}" added successfully with ID ${taskCounter}`);
+    toast.success(`Tugas "${taskData.name}" berhasil ditambahkan dengan ID ${taskCounter}`);
   };
 
   const deleteTask = (id: number) => {
@@ -95,7 +95,7 @@ const TaskManager = () => {
     if (taskToDelete) {
       setTasks(tasks.filter(task => task.id !== id));
       setDeletedTasks([taskToDelete, ...deletedTasks]);
-      toast.success(`Task "${taskToDelete.name}" deleted and can be undone`);
+      toast.success(`Tugas "${taskToDelete.name}" dihapus dan dapat dibatalkan`);
     }
   };
 
@@ -104,7 +104,7 @@ const TaskManager = () => {
     if (taskToComplete) {
       setTasks(tasks.filter(task => task.id !== id));
       setCompletedTasks([{ ...taskToComplete, completed: true }, ...completedTasks]);
-      toast.success(`Task "${taskToComplete.name}" completed!`);
+      toast.success(`Tugas "${taskToComplete.name}" selesai!`);
     }
   };
 
@@ -114,16 +114,16 @@ const TaskManager = () => {
       setDeletedTasks(deletedTasks.slice(1));
       const newTasks = [...tasks, taskToRestore].sort((a, b) => a.priority - b.priority);
       setTasks(newTasks);
-      toast.success(`Task "${taskToRestore.name}" restored`);
+      toast.success(`Tugas "${taskToRestore.name}" dikembalikan`);
     } else {
-      toast.error('No tasks to undo');
+      toast.error('Tidak ada tugas untuk dibatalkan');
     }
   };
 
   const filteredTasks = tasks.filter(task => {
     const matchesSearch = task.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          task.category.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = filterCategory === 'all' || task.category === filterCategory;
+    const matchesCategory = filterCategory === 'semua' || task.category === filterCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -168,12 +168,12 @@ const TaskManager = () => {
             Task Master Forge
           </h1>
           <p className="text-gray-600">
-            Advanced Task Management System - Web Version of C++ Implementation
+            Sistem Manajemen Tugas Canggih - Versi Web dari Implementasi C++
           </p>
           <div className="flex items-center justify-center gap-2 mt-4">
             <Code className="h-5 w-5 text-blue-600" />
             <span className="text-sm text-blue-600 font-medium">
-              C++ Source Code Available in /cpp-source folder
+              Kode Sumber C++ Tersedia di Folder /cpp-source
             </span>
           </div>
         </div>
@@ -184,7 +184,7 @@ const TaskManager = () => {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
-                placeholder="Search tasks by name or category..."
+                placeholder="Cari tugas berdasarkan nama atau kategori..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -197,7 +197,7 @@ const TaskManager = () => {
             onChange={(e) => setFilterCategory(e.target.value)}
             className="px-3 py-2 border border-gray-300 rounded-md bg-white"
           >
-            <option value="all">All Categories</option>
+            <option value="semua">Semua Kategori</option>
             {categories.map(cat => (
               <option key={cat} value={cat}>{cat}</option>
             ))}
@@ -208,9 +208,9 @@ const TaskManager = () => {
             onChange={(e) => setSortBy(e.target.value as 'priority' | 'deadline' | 'name')}
             className="px-3 py-2 border border-gray-300 rounded-md bg-white"
           >
-            <option value="priority">Sort by Priority</option>
-            <option value="deadline">Sort by Deadline</option>
-            <option value="name">Sort by Name</option>
+            <option value="priority">Urutkan berdasarkan Prioritas</option>
+            <option value="deadline">Urutkan berdasarkan Tenggat</option>
+            <option value="name">Urutkan berdasarkan Nama</option>
           </select>
 
           <Button 
@@ -218,7 +218,7 @@ const TaskManager = () => {
             className="bg-blue-600 hover:bg-blue-700"
           >
             <Plus className="h-4 w-4 mr-2" />
-            Add Task
+            Tambah Tugas
           </Button>
 
           <Button 
@@ -227,7 +227,7 @@ const TaskManager = () => {
             disabled={deletedTasks.length === 0}
           >
             <Undo2 className="h-4 w-4 mr-2" />
-            Undo Delete ({deletedTasks.length})
+            Batalkan Hapus ({deletedTasks.length})
           </Button>
         </div>
 
@@ -236,25 +236,25 @@ const TaskManager = () => {
           <Card>
             <CardContent className="p-4">
               <div className="text-2xl font-bold text-blue-600">{tasks.length}</div>
-              <div className="text-sm text-gray-600">Active Tasks</div>
+              <div className="text-sm text-gray-600">Tugas Aktif</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4">
               <div className="text-2xl font-bold text-green-600">{completedTasks.length}</div>
-              <div className="text-sm text-gray-600">Completed</div>
+              <div className="text-sm text-gray-600">Selesai</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4">
               <div className="text-2xl font-bold text-orange-600">{deletedTasks.length}</div>
-              <div className="text-sm text-gray-600">Can Undo</div>
+              <div className="text-sm text-gray-600">Dapat Dibatalkan</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4">
               <div className="text-2xl font-bold text-purple-600">{taskCounter - 1}</div>
-              <div className="text-sm text-gray-600">Total Created</div>
+              <div className="text-sm text-gray-600">Total Dibuat</div>
             </CardContent>
           </Card>
         </div>
@@ -262,8 +262,8 @@ const TaskManager = () => {
         {/* Main Content */}
         <Tabs defaultValue="active" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="active">Active Tasks</TabsTrigger>
-            <TabsTrigger value="completed">Completed Tasks</TabsTrigger>
+            <TabsTrigger value="active">Tugas Aktif</TabsTrigger>
+            <TabsTrigger value="completed">Tugas Selesai</TabsTrigger>
           </TabsList>
           
           <TabsContent value="active" className="mt-6">
